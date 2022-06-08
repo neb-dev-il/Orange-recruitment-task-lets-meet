@@ -1,5 +1,6 @@
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,51 +9,85 @@ import java.util.Scanner;
 class Person {
 
     private static final Scanner SCANNER = new Scanner(System.in);
-    private final LocalTime START_TIME;
-    private final LocalTime END_TIME;
-    private final List<LocalTime> startsAndEndsOfPlannedMeetings = new ArrayList<>();
+    private LocalTime START_TIME;
+    private LocalTime END_TIME;
+    private List<LocalTime> MEETINGS_STARTS_AND_ENDS;
 
-    public Person(String startTime, String endTime, List<String> startsAndEndsOfPlannedMeetings) {
+    void getStart() {
 
-        this.START_TIME = LocalTime.parse(startTime, DateTimeFormatter.ofPattern("HH:mm"));
-        this.END_TIME = LocalTime.parse(endTime, DateTimeFormatter.ofPattern("HH:mm"));
+        System.out.print("Please, input start time in HH:MM format: ");
 
-        for (String dateString : startsAndEndsOfPlannedMeetings) {
-            this.startsAndEndsOfPlannedMeetings.add(LocalTime.parse(dateString, DateTimeFormatter.ofPattern("HH:mm")));
+        while (true) {
+
+            String start = SCANNER.next();
+
+            try {
+
+                this.START_TIME = LocalTime.parse(start, DateTimeFormatter.ofPattern("HH:mm"));
+                break;
+
+            } catch (DateTimeParseException e) {
+
+                System.out.print("Please, input hour in HH:MM format: ");
+
+            }
+
         }
 
     }
 
-    static String getStart() {
-        System.out.print("Please, input your start time of work (HH:MM): ");
-        return SCANNER.next();
+    void getEnd() {
+
+        System.out.print("Please, input end time in HH:MM format: ");
+
+        while (true) {
+
+            String end = SCANNER.next();
+
+            try {
+
+                this.END_TIME = LocalTime.parse(end, DateTimeFormatter.ofPattern("HH:mm"));
+                break;
+
+            } catch (DateTimeParseException e) {
+
+                System.out.print("Please, input hour in HH:MM format: ");
+
+            }
+
+        }
+
     }
 
-    static String getEnd() {
-        System.out.print("Please, input your end time of work (HH:MM): ");
-        return SCANNER.next();
-    }
+    void getMeetingsStartsAndEnds() {
 
-    static List<String> getPlannedMeetingList() {
+        List<LocalTime> list = new ArrayList<>();
 
-        List<String> list = new ArrayList<>();
+        System.out.print("Please, input hours for all meetings in HH:MM format. After, input STOP\n");
 
-        System.out.print("Please, input hours for all meetings in HH:MM format. After, input STOP\nstart: ");
+        while (true) {
 
-        String hourOfMeeting = SCANNER.next();
-
-        while (!hourOfMeeting.equalsIgnoreCase("stop")) {
-
-            list.add(hourOfMeeting);
-            System.out.print("end: ");
-            hourOfMeeting = SCANNER.next();
             System.out.print("start: ");
-            list.add(hourOfMeeting);
-            hourOfMeeting = SCANNER.next();
+
+            String hourOfMeeting = SCANNER.next();
+
+            try {
+
+                if (hourOfMeeting.equalsIgnoreCase("stop")) {
+                    break;
+                }
+
+                list.add(LocalTime.parse(hourOfMeeting, DateTimeFormatter.ofPattern("HH:mm")));
+
+            } catch (DateTimeParseException e) {
+
+                System.out.print("Please, input hour in HH:MM format: ");
+
+            }
 
         }
 
-        return list;
+        this.MEETINGS_STARTS_AND_ENDS = list;
 
     }
 
@@ -64,8 +99,8 @@ class Person {
         return END_TIME;
     }
 
-    public List<LocalTime> getStartsAndEndsOfPlannedMeetings() {
-        return startsAndEndsOfPlannedMeetings;
+    List<LocalTime> getMEETINGS_STARTS_AND_ENDS() {
+        return MEETINGS_STARTS_AND_ENDS;
     }
 
     List<LocalTime> getHoursBetweenStartAndEnd(List<LocalTime> startsAndEnds, long meetingDuration) {
@@ -108,7 +143,7 @@ class Person {
             }
         }
 
-        this.startsAndEndsOfPlannedMeetings.removeAll(duplicates);
+        this.MEETINGS_STARTS_AND_ENDS.removeAll(duplicates);
 
     }
 

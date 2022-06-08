@@ -1,4 +1,5 @@
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,21 +9,35 @@ import static java.time.temporal.ChronoUnit.MINUTES;
 class Timetable {
 
     private static final Scanner SCANNER = new Scanner(System.in);
-    private final long MEETING_DURATION;
-    private final List<LocalTime> possibleHours = new ArrayList<>();
+    private long MEETING_DURATION;
+    private final List<LocalTime> POSSIBLE_HOURS = new ArrayList<>();
 
-    public Timetable(String meetingDuration) {
-        String[] array = meetingDuration.split(":");
-        this.MEETING_DURATION = Long.parseLong(array[0]) * 60 + Long.parseLong(array[1]);
-    }
+    void getMeetingDuration() {
 
-    static String getMeetingDuration() {
         System.out.print("Please, input the meeting duration (HH:MM): ");
-        return SCANNER.next();
+
+        while (true) {
+
+            String meetingDuration = SCANNER.next();
+
+            try {
+
+                String[] array = meetingDuration.split(":");
+                this.MEETING_DURATION = Long.parseLong(array[0]) * 60 + Long.parseLong(array[1]);
+                break;
+
+            } catch (DateTimeParseException | NumberFormatException f) {
+
+                System.out.print("Please, input hour in HH:MM format: ");
+
+            }
+
+        }
+
     }
 
-    List<LocalTime> getPossibleHours() {
-        return possibleHours;
+    List<LocalTime> getPOSSIBLE_HOURS() {
+        return POSSIBLE_HOURS;
     }
 
     long getMEETING_DURATION() {
@@ -34,21 +49,21 @@ class Timetable {
         LocalTime start = secondStart.isAfter(firstStart) ? secondStart : firstStart;
         LocalTime end = secondEnd.isBefore(firstEnd) ? secondEnd : firstEnd;
 
-        this.possibleHours.add(start);
+        this.POSSIBLE_HOURS.add(start);
 
         for (int index = 0; MINUTES.between(possibleHours.get(index), end) > MEETING_DURATION; index++) {
 
             LocalTime hour = possibleHours.get(index).plusMinutes(MEETING_DURATION);
-            this.possibleHours.add(hour);
+            this.POSSIBLE_HOURS.add(hour);
 
         }
 
-        this.possibleHours.add(end);
+        this.POSSIBLE_HOURS.add(end);
 
     }
 
     void deleteCommonHours(List<LocalTime> list) {
-        this.possibleHours.removeAll(list);
+        this.POSSIBLE_HOURS.removeAll(list);
     }
 
     void deleteHoursBetweenStartsAndEnds(List<LocalTime> possibleHours) {
@@ -84,7 +99,7 @@ class Timetable {
 
         }
 
-        this.possibleHours.removeAll(hoursBetween);
+        this.POSSIBLE_HOURS.removeAll(hoursBetween);
 
     }
 
