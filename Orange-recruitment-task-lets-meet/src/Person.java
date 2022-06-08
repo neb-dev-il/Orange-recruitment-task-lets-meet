@@ -49,7 +49,7 @@ class Person {
             System.out.print("start: ");
             list.add(hourOfMeeting);
             hourOfMeeting = SCANNER.next();
-            
+
         }
 
         return list;
