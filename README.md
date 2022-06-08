@@ -37,6 +37,7 @@ end: > 17:00
 start: > stop
 Please, input the meeting duration (HH:MM): > 00:30
 
+Calendar 1
 {
   working_hours: {
     start: "09:00",
@@ -50,11 +51,12 @@ planned_meeting: [
     end: "13:00"
  },
     start: "16:00",
-    end: "18:00"
+    end: "17:00"
  },
 ]
 }
 
+Calendar 2
 {
   working_hours: {
     start: "10:00",
@@ -76,5 +78,5 @@ planned_meeting: [
 ]
 }
 
-[11:30, 12:00, 15:00, 16:00, 18:00, 18:30]
+[11:30, 12:00, 15:00, 16:00, 17:00, 18:30]
 </pre>
