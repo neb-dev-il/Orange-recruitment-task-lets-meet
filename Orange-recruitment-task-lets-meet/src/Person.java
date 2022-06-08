@@ -62,13 +62,13 @@ class Person {
     void getMeetingsStartsAndEnds() {
 
         List<LocalTime> list = new ArrayList<>();
+        int counter = 1;
 
         System.out.print("Please, input hours for all meetings in HH:MM format. After, input STOP\n");
 
         while (true) {
 
-            System.out.print("start: ");
-
+            System.out.print(counter % 2 == 0 ? "end: " : "start: ");
             String hourOfMeeting = SCANNER.next();
 
             try {
@@ -78,6 +78,7 @@ class Person {
                 }
 
                 list.add(LocalTime.parse(hourOfMeeting, DateTimeFormatter.ofPattern("HH:mm")));
+                ++counter;
 
             } catch (DateTimeParseException e) {
 
