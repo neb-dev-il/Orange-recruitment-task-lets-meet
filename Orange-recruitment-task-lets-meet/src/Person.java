@@ -13,6 +13,26 @@ class Person {
     private LocalTime END_TIME;
     private List<LocalTime> MEETINGS_STARTS_AND_ENDS;
 
+    void printCalendar(LocalTime start, LocalTime end, List<LocalTime> meetingsStartsAndEnds) {
+
+        System.out.print("\n{\n" +
+                         "  working_hours: {\n" +
+                         "    start: \"" + start + "\",\n" +
+                         "    end: \"" + end + "\"\n" +
+                         " },\n" +
+                           "planned_meeting: [\n");
+
+        for (int i = 1; i <= meetingsStartsAndEnds.size() - 1; i = i + 2) {
+
+            System.out.print("    start: \"" + meetingsStartsAndEnds.get(i - 1) + "\",\n" +
+                             "    end: \"" + meetingsStartsAndEnds.get(i) + "\"\n" +
+                             " },\n");
+        }
+
+        System.out.print("]\n" +
+                       "}\n");
+    }
+
     void getStart() {
 
         System.out.print("Please, input start time in HH:MM format: ");
