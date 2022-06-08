@@ -17,8 +17,8 @@ class Main {
 
         timetable.getMeetingDuration();
 
-        firstPerson.printCalendar(firstPerson.getSTART_TIME(), firstPerson.getEND_TIME(), firstPerson.getMEETINGS_STARTS_AND_ENDS());
-        secondPerson.printCalendar(secondPerson.getSTART_TIME(), secondPerson.getEND_TIME(), secondPerson.getMEETINGS_STARTS_AND_ENDS());
+        firstPerson.printCalendar(1, firstPerson.getSTART_TIME(), firstPerson.getEND_TIME(), firstPerson.getMEETINGS_STARTS_AND_ENDS());
+        secondPerson.printCalendar(2, secondPerson.getSTART_TIME(), secondPerson.getEND_TIME(), secondPerson.getMEETINGS_STARTS_AND_ENDS());
 
         firstPerson.deleteAllOccurrencesOfDuplicateHours(firstPerson.getMEETINGS_STARTS_AND_ENDS());
         secondPerson.deleteAllOccurrencesOfDuplicateHours(secondPerson.getMEETINGS_STARTS_AND_ENDS());
