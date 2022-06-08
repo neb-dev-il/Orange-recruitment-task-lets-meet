@@ -9,7 +9,7 @@ class Timetable {
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private final long MEETING_DURATION;
-    private List<LocalTime> possibleHours = new ArrayList<>();
+    private final List<LocalTime> possibleHours = new ArrayList<>();
 
     public Timetable(String meetingDuration) {
         String[] array = meetingDuration.split(":");
