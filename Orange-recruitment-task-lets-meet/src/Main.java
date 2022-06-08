@@ -24,7 +24,7 @@ class Main {
         timetable.deleteCommonHours(firstPerson.getHoursBetweenStartAndEnd(firstPerson.getMEETINGS_STARTS_AND_ENDS(), timetable.getMEETING_DURATION()));
         timetable.deleteCommonHours(secondPerson.getHoursBetweenStartAndEnd(secondPerson.getMEETINGS_STARTS_AND_ENDS(), timetable.getMEETING_DURATION()));
         timetable.deleteHoursBetweenStartsAndEnds(timetable.getPOSSIBLE_HOURS());
-        
+
         System.out.println(timetable.getPOSSIBLE_HOURS());
 
     }
