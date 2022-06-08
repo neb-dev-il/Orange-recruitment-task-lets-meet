@@ -13,9 +13,10 @@ class Person {
     private LocalTime END_TIME;
     private List<LocalTime> MEETINGS_STARTS_AND_ENDS;
 
-    void printCalendar(LocalTime start, LocalTime end, List<LocalTime> meetingsStartsAndEnds) {
+    void printCalendar(int calendarNumber, LocalTime start, LocalTime end, List<LocalTime> meetingsStartsAndEnds) {
 
-        System.out.print("\n{\n" +
+        System.out.printf("\nCalendar %d\n", calendarNumber);
+        System.out.print("{\n" +
                          "  working_hours: {\n" +
                          "    start: \"" + start + "\",\n" +
                          "    end: \"" + end + "\"\n" +
