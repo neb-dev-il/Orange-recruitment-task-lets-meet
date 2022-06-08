@@ -18,18 +18,12 @@ class Person {
         System.out.print("Please, input start time in HH:MM format: ");
 
         while (true) {
-
             String start = SCANNER.next();
-
             try {
-
                 this.START_TIME = LocalTime.parse(start, DateTimeFormatter.ofPattern("HH:mm"));
                 break;
-
             } catch (DateTimeParseException e) {
-
                 System.out.print("Please, input hour in HH:MM format: ");
-
             }
 
         }
@@ -41,18 +35,12 @@ class Person {
         System.out.print("Please, input end time in HH:MM format: ");
 
         while (true) {
-
             String end = SCANNER.next();
-
             try {
-
                 this.END_TIME = LocalTime.parse(end, DateTimeFormatter.ofPattern("HH:mm"));
                 break;
-
             } catch (DateTimeParseException e) {
-
                 System.out.print("Please, input hour in HH:MM format: ");
-
             }
 
         }
@@ -67,23 +55,16 @@ class Person {
         System.out.print("Please, input hours for all meetings in HH:MM format. After, input STOP\n");
 
         while (true) {
-
             System.out.print(counter % 2 == 0 ? "end: " : "start: ");
             String hourOfMeeting = SCANNER.next();
-
             try {
-
                 if (hourOfMeeting.equalsIgnoreCase("stop")) {
                     break;
                 }
-
                 list.add(LocalTime.parse(hourOfMeeting, DateTimeFormatter.ofPattern("HH:mm")));
                 ++counter;
-
             } catch (DateTimeParseException e) {
-
                 System.out.print("Please, input hour in HH:MM format: ");
-
             }
 
         }
@@ -107,7 +88,6 @@ class Person {
     List<LocalTime> getHoursBetweenStartAndEnd(List<LocalTime> startsAndEnds, long meetingDuration) {
 
         List<LocalTime> hoursBetween = new ArrayList<>();
-
         int index = 0;
 
         for (int i = 0; i < startsAndEnds.size() - 1; i = i + 2) {
@@ -115,11 +95,9 @@ class Person {
             hoursBetween.add(startsAndEnds.get(i));
 
             while (ChronoUnit.MINUTES.between(hoursBetween.get(index).plusMinutes(meetingDuration), startsAndEnds.get(i + 1)) >= meetingDuration) {
-
                 LocalTime hour = hoursBetween.get(index).plusMinutes(meetingDuration);
                 hoursBetween.add(hour);
                 index++;
-
             }
 
             hoursBetween.remove(startsAndEnds.get(i));
@@ -137,11 +115,10 @@ class Person {
         for (int i = 1; i < startsAndEnds.size(); i++) {
 
             if (startsAndEnds.get(i).equals(startsAndEnds.get(i - 1))) {
-
                 duplicates.add(startsAndEnds.get(i));
                 duplicates.add(startsAndEnds.get(i - 1));
-
             }
+
         }
 
         this.MEETINGS_STARTS_AND_ENDS.removeAll(duplicates);
