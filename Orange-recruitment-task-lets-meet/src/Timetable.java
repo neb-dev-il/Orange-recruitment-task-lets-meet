@@ -17,19 +17,13 @@ class Timetable {
         System.out.print("Please, input the meeting duration (HH:MM): ");
 
         while (true) {
-
             String meetingDuration = SCANNER.next();
-
             try {
-
                 String[] array = meetingDuration.split(":");
                 this.MEETING_DURATION = Long.parseLong(array[0]) * 60 + Long.parseLong(array[1]);
                 break;
-
             } catch (DateTimeParseException | NumberFormatException f) {
-
                 System.out.print("Please, input hour in HH:MM format: ");
-
             }
 
         }
@@ -52,10 +46,8 @@ class Timetable {
         this.POSSIBLE_HOURS.add(start);
 
         for (int index = 0; MINUTES.between(possibleHours.get(index), end) > MEETING_DURATION; index++) {
-
             LocalTime hour = possibleHours.get(index).plusMinutes(MEETING_DURATION);
             this.POSSIBLE_HOURS.add(hour);
-
         }
 
         this.POSSIBLE_HOURS.add(end);
@@ -78,23 +70,17 @@ class Timetable {
             for (int j = i - 1; j <= i + 1; j++) {
 
                 if (j == i - 1 && MINUTES.between(possibleHours.get(j), possibleHours.get(i)) <= MEETING_DURATION) {
-
                     isBefore = true;
-
                 }
 
                 if (j == i + 1 && MINUTES.between(possibleHours.get(i), possibleHours.get(j)) <= MEETING_DURATION) {
-
                     isAfter = true;
-
                 }
 
             }
 
             if (isBefore && isAfter) {
-
                 hoursBetween.add(possibleHours.get(i));
-
             }
 
         }
