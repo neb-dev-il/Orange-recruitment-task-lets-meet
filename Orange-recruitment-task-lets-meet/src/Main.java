@@ -13,6 +13,7 @@ class Main {
         timetable.deleteCommonHours(secondPerson.getHoursBetweenStartAndEnd(secondPerson.getStartsAndEndsOfPlannedMeetings(), timetable.getMEETING_DURATION()));
         timetable.deleteHoursBetweenStartsAndEnds(timetable.getPossibleHours());
         System.out.println(timetable.getPossibleHours());
+
     }
 
 }
