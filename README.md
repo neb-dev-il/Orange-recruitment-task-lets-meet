@@ -2,8 +2,10 @@
 
 This program implements an algorithm in Java that, based on the calendars of two people and the estimated length of the meeting, will propose possible meeting dates.
 At the entrance:
+
 - 2 people calendars with specific working hours and scheduled meetings
 - estimated duration of the meeting
+
 As a result, the program returns the ranges in which meetings can be arranged.
 
 ## Example
