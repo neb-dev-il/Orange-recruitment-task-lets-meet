@@ -42,12 +42,14 @@ class Person {
         String hourOfMeeting = SCANNER.next();
 
         while (!hourOfMeeting.equalsIgnoreCase("stop")) {
+
             list.add(hourOfMeeting);
             System.out.print("end: ");
             hourOfMeeting = SCANNER.next();
             System.out.print("start: ");
             list.add(hourOfMeeting);
             hourOfMeeting = SCANNER.next();
+            
         }
 
         return list;
